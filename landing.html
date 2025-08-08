@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Uygulamayı İndir</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self';" />
+  <style>
+    :root { --overlay: rgba(0,0,0,0.45); --bg: #0e0e10; --brand: #f27a1a; }
+    html, body { height: 100%; margin: 0; background: var(--bg); }
+    /* Overlay */
+    #app-download-modal-overlay {
+      position: fixed; inset: 0; background: var(--overlay);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+    /* Modal */
+    #app-download-modal {
+      width: min(90vw, 420px);
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; padding: 20px 20px 18px; text-align: center;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    }
+    #app-download-modal h3 { margin: 0 0 8px; font-size: 20px; }
+    #app-download-modal p { margin: 0 0 14px; color: rgba(255,255,255,0.9); font-size: 14px; }
+    #app-download-modal .app-image-slot {
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 12px; overflow: hidden; background: rgba(255,255,255,0.06);
+      margin: 0 auto 12px; width: 100%; max-width: 56%;
+    }
+    #app-download-modal .app-image-slot img {
+      display: block; width: auto; height: auto; max-width: 100%; border-radius: 12px;
+    }
+    #app-download-modal .cta {
+      display: block; width: 100%; padding: 12px 16px; background: var(--brand);
+      color: #fff; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 16px;
+    }
+    #app-download-modal .cta:hover { background: #d96a14; }
+    /* Mobile tweaks */
+    @media (max-width: 480px){
+      #app-download-modal { width: calc(100vw - 28px); padding: 16px; }
+      #app-download-modal h3 { font-size: 18px; margin-bottom: 6px; }
+      #app-download-modal p { font-size: 13px; margin-bottom: 12px; }
+      #app-download-modal .app-image-slot { max-width: 82%; }
+      #app-download-modal .cta { font-size: 15px; }
+    }
+    @media (max-width: 360px){
+      #app-download-modal { width: calc(100vw - 20px); padding: 14px; }
+      #app-download-modal h3 { font-size: 17px; }
+      #app-download-modal p { font-size: 12px; }
+      #app-download-modal .app-image-slot { max-width: 88%; }
+      #app-download-modal .cta { font-size: 14px; padding: 11px 12px; }
+    }
+    /* Erişilebilirlik */
+    #app-download-modal .cta:focus { outline: 2px solid #fff; outline-offset: 2px; }
+    html, body { overflow: hidden; }
+  </style>
+</head>
+<body style="background-image: url(bg-desktop.png); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <div id="app-download-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="app-modal-title">
+    <div id="app-download-modal">
+      <h3 id="app-modal-title">Uygulamamızı keşfedin</h3>
+      <p>Daha iyi indirimler, daha iyi hizmet, daha iyi alışveriş deneyimi.</p>
+      <div class="app-image-slot">
+        <img src="https://play-lh.googleusercontent.com/LosPYfjaz1pOL-I3XCTroj4vQVxfsF5629nzPJM4pIj2KLaQuLbwmXUqV-I1RT5u9A=w240-h480" alt="Uygulama görseli" loading="lazy" decoding="async" />
+      </div>
+      <button class="cta" id="app-download-now-btn">Şimdi indir</button>
+    </div>
+  </div>
+  <script>
+    // Kapatma yok; sadece indir davranışı
+    (function(){
+      var btn = document.getElementById('app-download-now-btn');
+      if(btn){ btn.addEventListener('click', function(){
+        // İndirme linkinizi buraya ekleyin
+        alert('İndirme bağlantısı burada açılacak.');
+      }); }
+    })();
+  </script>
+</body>
+</html>
+
