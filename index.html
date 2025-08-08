@@ -12,6 +12,7 @@
     #app-download-modal-overlay {
       position: fixed; inset: 0; background: var(--overlay);
       display: flex; align-items: center; justify-content: center; z-index: 9999;
+      opacity: 0; animation: overlayFade .32s ease-out forwards;
     }
     /* Modal */
     #app-download-modal {
@@ -20,6 +21,7 @@
       color: #fff; border: 1px solid rgba(255,255,255,0.08);
       border-radius: 12px; padding: 20px 20px 18px; text-align: center;
       box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      opacity: 0; animation: popIn .38s cubic-bezier(.2,.7,.2,1) .08s forwards; will-change: transform, opacity;
     }
     #app-download-modal h3 { margin: 0 0 8px; font-size: 20px; }
     #app-download-modal p { margin: 0 0 14px; color: rgba(255,255,255,0.9); font-size: 14px; }
@@ -36,6 +38,10 @@
       color: #fff; border: 0; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 16px;
     }
     #app-download-modal .cta:hover { background: #d96a14; }
+    /* Animations */
+    @keyframes overlayFade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes popIn { 0% { opacity: 0; transform: translateY(12px) scale(.96); } 100% { opacity: 1; transform: translateY(0) scale(1);} }
+    @media (prefers-reduced-motion: reduce){ *, *::before, *::after { animation: none !important; transition: none !important; } #app-download-modal-overlay, #app-download-modal { opacity: 1 !important; } }
     /* Mobile tweaks */
     @media (max-width: 480px){
       /* Mobil arkaplan */
@@ -46,21 +52,22 @@
         background-repeat: no-repeat !important;
         background-attachment: scroll !important;
       }
-      #app-download-modal { width: calc(100vw - 28px); padding: 16px; }
-      #app-download-modal h3 { font-size: 18px; margin-bottom: 6px; }
-      #app-download-modal p { font-size: 13px; margin-bottom: 12px; }
-      #app-download-modal .app-image-slot { max-width: 82%; }
-      #app-download-modal .cta { font-size: 15px; }
+      /* Daha küçük kutucuk ve iç boşluk */
+      #app-download-modal { width: calc(100vw - 44px); padding: 14px 14px 12px; border-radius: 10px; }
+      #app-download-modal h3 { font-size: 17px; margin-bottom: 6px; }
+      #app-download-modal p { font-size: 12.5px; margin-bottom: 12px; }
+      #app-download-modal .app-image-slot { max-width: 72%; }
+      #app-download-modal .cta { font-size: 14.5px; padding: 11px 12px; }
     }
     @media (max-width: 360px){
       body{
         background-image: url('bg-mobile.png') !important;
       }
-      #app-download-modal { width: calc(100vw - 20px); padding: 14px; }
-      #app-download-modal h3 { font-size: 17px; }
+      #app-download-modal { width: calc(100vw - 32px); padding: 12px; }
+      #app-download-modal h3 { font-size: 16px; }
       #app-download-modal p { font-size: 12px; }
-      #app-download-modal .app-image-slot { max-width: 88%; }
-      #app-download-modal .cta { font-size: 14px; padding: 11px 12px; }
+      #app-download-modal .app-image-slot { max-width: 58%; }
+      #app-download-modal .cta { font-size: 14px; padding: 10px 12px; }
     }
     /* Erişilebilirlik */
     #app-download-modal .cta:focus { outline: 2px solid #fff; outline-offset: 2px; }
